@@ -8,6 +8,13 @@
 
 <title>R Markdown format for Distill articles — distill_article • distill</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -42,6 +49,7 @@
 
 <meta property="og:title" content="R Markdown format for Distill articles — distill_article" />
 <meta property="og:description" content="Scientific and technical writing, native to the web." />
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -133,26 +141,28 @@
     <p>Scientific and technical writing, native to the web.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>distill_article</span>(
-  toc = <span class='fl'>FALSE</span>,
-  toc_depth = <span class='fl'>3</span>,
-  fig_width = <span class='fl'>6.5</span>,
-  fig_height = <span class='fl'>4</span>,
-  fig_retina = <span class='fl'>2</span>,
-  fig_caption = <span class='fl'>TRUE</span>,
-  dev = <span class='st'>"png"</span>,
-  smart = <span class='fl'>TRUE</span>,
-  self_contained = <span class='fl'>TRUE</span>,
-  mathjax = <span class='st'>"default"</span>,
-  extra_dependencies = <span class='kw'>NULL</span>,
-  css = <span class='kw'>NULL</span>,
-  includes = <span class='kw'>NULL</span>,
-  keep_md = <span class='fl'>FALSE</span>,
-  lib_dir = <span class='kw'>NULL</span>,
-  md_extensions = <span class='kw'>NULL</span>,
-  pandoc_args = <span class='kw'>NULL</span>,
-  <span class='kw'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>distill_article</span><span class='op'>(</span>
+  toc <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  toc_depth <span class='op'>=</span> <span class='fl'>3</span>,
+  fig_width <span class='op'>=</span> <span class='fl'>6.5</span>,
+  fig_height <span class='op'>=</span> <span class='fl'>4</span>,
+  fig_retina <span class='op'>=</span> <span class='fl'>2</span>,
+  fig_caption <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  dev <span class='op'>=</span> <span class='st'>"png"</span>,
+  smart <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  self_contained <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  highlight <span class='op'>=</span> <span class='st'>"default"</span>,
+  highlight_downlit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  mathjax <span class='op'>=</span> <span class='st'>"default"</span>,
+  extra_dependencies <span class='op'>=</span> <span class='cn'>NULL</span>,
+  css <span class='op'>=</span> <span class='cn'>NULL</span>,
+  includes <span class='op'>=</span> <span class='cn'>NULL</span>,
+  keep_md <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  lib_dir <span class='op'>=</span> <span class='cn'>NULL</span>,
+  md_extensions <span class='op'>=</span> <span class='cn'>NULL</span>,
+  pandoc_args <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -202,6 +212,18 @@ dependencies, using data: URIs to incorporate the contents of linked
 scripts, stylesheets, images, and videos. Note that even for self contained
 documents MathJax is still loaded externally (this is necessary because of
 its size).</p></td>
+    </tr>
+    <tr>
+      <th>highlight</th>
+      <td><p>Syntax highlighting style. Supported styles include
+"default", "tango", "pygments", "kate", "monochrome", "espresso",
+"zenburn", "breezedark", and  "haddock". Pass NULL to prevent syntax
+highlighting.</p></td>
+    </tr>
+    <tr>
+      <th>highlight_downlit</th>
+      <td><p>Use the <span class="pkg">downlit</span> package to highlight
+R code (including providing hyperlinks to function documentation).</p></td>
     </tr>
     <tr>
       <th>mathjax</th>
