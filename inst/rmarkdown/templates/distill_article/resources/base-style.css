@@ -68,6 +68,7 @@ d-article aside {
 
 /*-- FIGURE CAPTIONS --*/
 figure .caption,
+.figure .caption,
 figure figcaption {
 	font-size: var(--fig-cap-size);
 	color: var(--fig-cap-color);
