@@ -10,7 +10,8 @@
 }
 
 body,
-.posts-list .post-preview p {
+.posts-list .post-preview p,
+.posts-list .description p {
   font-family: var(--body-font), var(--body-default);
 }
 
