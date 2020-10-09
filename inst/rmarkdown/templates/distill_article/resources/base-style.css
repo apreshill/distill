@@ -17,6 +17,7 @@ body,
 h1, h2, h3, h4, h5, h6,
 .posts-list .post-preview h2,
 .posts-list .post-preview h3,
+.posts-list .description h2,
 .posts-sidebar h3 {
   font-family: var(--heading-font), var(--heading-default);
 }
