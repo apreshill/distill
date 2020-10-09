@@ -31,6 +31,11 @@ d-article p code {
 	font-family: var(--mono-font), var(--mono-default);
 }
 
+/* bullet color */
+li::marker {
+  color: rgba(0, 0, 0, 0.8);
+}
+
 /*-- TITLE --*/
 d-title h1,
 .posts-list > h1 {
