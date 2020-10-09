@@ -13,6 +13,7 @@ body,
 .posts-list .post-preview p,
 .posts-list .description p {
   font-family: var(--body-font), var(--body-default);
+  font-weight: var(--body-weight), normal;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -21,6 +22,7 @@ h1, h2, h3, h4, h5, h6,
 .posts-list .description h2,
 .posts-sidebar h3 {
   font-family: var(--heading-font), var(--heading-default);
+  font-weight: var(--heading-weight), normal;
 }
 
 d-article div.sourceCode code,
@@ -46,7 +48,7 @@ d-article h3,
 d-article h4,
 d-article h5,
 d-article h6 {
-  color: var(--header-color, rgba(0, 0, 0, 0.8));
+  color: var(--heading-color, rgba(0, 0, 0, 0.8));
 }
 
 /*-- BODY --*/
@@ -110,6 +112,7 @@ d-appendix h3 {
 d-appendix {
   font-size: var(--text-size, 0.8em);
 	color: var(--text-color, rgba(0, 0, 0, 0.5));
+	background-color: var(--bkgd-color, white);
 }
 
 d-appendix d-footnote-list a.footnote-backlink {
@@ -121,6 +124,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 .distill-site-header .title {
 	font-size: var(--title-size, 18px);
 	font-family: var(--navbar-font), var(--heading-default);
+	font-weight: var(--title-weight, 400);
 }
 
 .distill-site-header a {
