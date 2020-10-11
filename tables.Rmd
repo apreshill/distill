@@ -1,0 +1,215 @@
+---
+title: "Tables"
+description: Display data in attractive, compact formats
+---
+
+There are a number of options available for displaying tables within Distill articles, including:
+
+-   Using the `knitr::kable()` function to render a data frame as HTML.
+
+-   Using the `rmarkdown::paged_table()` function to create a page-able version of a data frame.
+
+-   Use the [gtsummary](http://www.danieldsjoberg.com/gtsummary/) and [gt](https://gt.rstudio.com/) packages to create to create publication-ready analytical and summary tables.
+
+-   Using standard [markdown table syntax](https://pandoc.org/MANUAL.html#tables) to create a custom table.
+
+## Knitr kable
+
+The `knitr::kable()` function will render an R data frame as an HTML table. For example:
+
+```` {.clike}
+```{r, layout="l-body-outset"}`r ''`
+library(knitr)
+kable(head(mtcars))
+```
+````
+
+```{r, layout="l-body-outset"}
+library(knitr)
+kable(head(mtcars))
+```
+
+Often times tables will require more width for their display than the standard Distill article text width. Here we use `layout="l-body-outset"` to cause the table to outset slightly from the main text column. All of the available [figure layouts](figures.html) can also be used with tables.
+
+## Paged tables
+
+If a data frame has a large number of rows it might not be practical to display it fully inline. In these situations you can use the `rmarkdown::paged_table()` function to create a table that allows pagination of rows and columns. For example:
+
+```` {.clike}
+```{r, layout="l-body-outset"}`r ''`
+library(rmarkdown)
+paged_table(mtcars)
+```
+````
+
+```{r, layout="l-body-outset"}
+library(rmarkdown)
+paged_table(mtcars)
+```
+
+There are a number of options available that control the display of paged tables. By default, 10 rows at a time are displayed but you can use the `rows.print` option to increase this. For example:
+
+```` {.clike}
+```{r, layout="l-body-outset"}`r ''`
+library(rmarkdown)
+paged_table(mtcars, options = list(rows.print = 15))
+```
+````
+
+```{r, layout="l-body-outset"}
+library(rmarkdown)
+paged_table(mtcars, options = list(rows.print = 15, cols.print = 5))
+```
+
+Here is a summary of the available paged table options:
+
+| Option           | Description                                    |
+|------------------|------------------------------------------------|
+| `rows.print`     | Maximum rows to print per page.                |
+| `max.print`      | Maximum rows in the table (defaults to 1000).  |
+| `cols.print`     | Maximum columns in the table (defaults to 10). |
+| `rownames.print` | Print row names as part of the table.          |
+
+## gtsummary tables
+
+The [gtsummary](http://www.danieldsjoberg.com/gtsummary/) package provides an elegant and flexible way to create publication-ready analytical and summary tables. The package summarizes data sets, regression models, and more, using sensible defaults with highly customizable capabilities. For example:
+
+```` {.clike}
+```{r}`r ''`
+library(gtsummary)
+library(survival)
+
+# build glm table
+mod1 <- glm(response ~ trt + age + grade, trial, family = binomial)
+t1 <- tbl_regression(mod1, exponentiate = TRUE)
+
+# build survival model table
+t2 <-
+  coxph(Surv(ttdeath, death) ~ trt + grade + age, trial) %>%
+  tbl_regression(exponentiate = TRUE)
+
+# merge tables 
+tbl_merge(
+  tbls = list(t1, t2),
+  tab_spanner = c("**Tumor Response**", "**Time to Death**")
+)
+```
+````
+
+```{r}
+library(gtsummary)
+library(survival)
+
+# build glm table
+mod1 <- glm(response ~ trt + age + grade, trial, family = binomial)
+t1 <- tbl_regression(mod1, exponentiate = TRUE)
+
+# build survival model table
+t2 <-
+  coxph(Surv(ttdeath, death) ~ trt + grade + age, trial) %>%
+  tbl_regression(exponentiate = TRUE)
+
+# merge tables 
+tbl_merge(
+  tbls = list(t1, t2),
+  tab_spanner = c("**Tumor Response**", "**Time to Death**")
+)
+```
+
+## gt tables
+
+The [gtsummary](http://www.danieldsjoberg.com/gtsummary/) package is built in top of the [gt](https://gt.rstudio.com/) package, which provides a flexible foundation for creating just about any sort of table you can imagine. Here is a brief example of how to use **gt** to create a table from the included `sp500` dataset:
+
+```` {.clike}
+```{r}`r ''`
+library(gt)
+library(tidyverse)
+library(glue)
+
+# Define the start and end dates for the data range
+start_date <- "2010-06-07"
+end_date <- "2010-06-14"
+
+# Create a gt table based on preprocessed
+# `sp500` table data
+sp500 %>%
+  dplyr::filter(date >= start_date & date <= end_date) %>%
+  dplyr::select(-adj_close) %>%
+  gt() %>%
+  tab_header(
+    title = "S&P 500",
+    subtitle = glue::glue("{start_date} to {end_date}")
+  ) %>%
+  fmt_date(
+    columns = vars(date),
+    date_style = 3
+  ) %>%
+  fmt_currency(
+    columns = vars(open, high, low, close),
+    currency = "USD"
+  ) %>%
+  fmt_number(
+    columns = vars(volume),
+    suffixing = TRUE
+  )
+```
+````
+
+```{r}
+library(gt)
+library(tidyverse)
+library(glue)
+
+# Define the start and end dates for the data range
+start_date <- "2010-06-07"
+end_date <- "2010-06-14"
+
+# Create a gt table based on preprocessed
+# `sp500` table data
+sp500 %>%
+  dplyr::filter(date >= start_date & date <= end_date) %>%
+  dplyr::select(-adj_close) %>%
+  gt() %>%
+  tab_header(
+    title = "S&P 500",
+    subtitle = glue::glue("{start_date} to {end_date}")
+  ) %>%
+  fmt_date(
+    columns = vars(date),
+    date_style = 3
+  ) %>%
+  fmt_currency(
+    columns = vars(open, high, low, close),
+    currency = "USD"
+  ) %>%
+  fmt_number(
+    columns = vars(volume),
+    suffixing = TRUE
+  )
+```
+
+## Markdown tables
+
+You can also define [tables using markdown](https://pandoc.org/MANUAL.html#tables). For example, the table from the previous section that describes paged table options was defined with the following markdown:
+
+``` {.markdown}
+| Option           | Description                                    |
+|------------------|------------------------------------------------|
+| `rows.print`     | Maximum rows to print per page.                |
+| `max.print`      | Maximum rows in the table (defaults to 1000).  |
+| `cols.print`     | Maximum columns in the table (defaults to 10). |
+| `rownames.print` | Print row names as part of the table.          |
+```
+
+You can use Distill [figure layout](figures.html) classes with markdown tables by enclosing them in markdown div (`:::`) named with the appropriate class, for example:
+
+``` {.markdown}
+::: l-body-outset
+| Option           | Description                                    |
+|------------------|------------------------------------------------|
+| `rows.print`     | Maximum rows to print per page.                |
+| `max.print`      | Maximum rows in the table (defaults to 1000).  |
+| `cols.print`     | Maximum columns in the table (defaults to 10). |
+| `rownames.print` | Print row names as part of the table.          |
+:::
+```

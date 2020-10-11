@@ -1,0 +1,12 @@
+---
+title: "Distill Basics"
+description: Scientific and technical writing, native to the web
+bibliography: biblio.bib
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+```
+
+```{r, child="_common/distill_basics.Rmd"}
+```

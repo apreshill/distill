@@ -1,0 +1,59 @@
+name: "distill"
+title: "Distill for R Markdown"
+favicon: images/favicon.png
+base_url: https://rstudio.github.io/distill
+repository_url: https://github.com/rstudio/distill
+creative_commons: CC BY
+output_dir: "."
+navbar:
+  logo:
+    image: images/logo.png
+    href: https://www.rstudio.com
+  source_url: true
+  search: true
+  right:
+    - text: "Authoring"
+      menu:
+        - text: "Distill Basics"
+          href: basics.html
+        - text: "Figure Layout"
+          href: figures.html
+        - text: "Tables"
+          href: tables.html
+        - text: "Diagrams"
+          href: diagrams.html
+        - text: "JavaScript & D3"
+          href: interactivity.html
+        - text: "---"
+        - text: "Citations"
+          href: citations.html
+        - text: "Article Metadata"
+          href: metadata.html
+        - text: "---"
+        - text: "Migrating from Radix"
+          href: migrating.html
+    - text: "Websites"
+      menu:
+        - text: "Creating a Website"
+          href: website.html
+        - text: "---"
+        - text: "Creating a Blog"
+          href: blog.html
+        - text: "Blog Post Workflow"
+          href: blog_workflow.html
+        - text: "---"
+        - text: "Publishing Websites"
+          href: publish_website.html
+    - text: "Publishing"
+      menu:
+        - text: "Publishing Articles"
+          href: publish_article.html
+        - text: "Publishing Websites"
+          href: publish_website.html
+output:
+  distill::distill_article:
+    css: styles.css
+    highlight: rstudio
+    toc: true
+
+
